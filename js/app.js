@@ -14,6 +14,7 @@ function consultarCriptomonedas() {
     fetch(url)
         .then( respuesta => respuesta.json())
         .then( resultado => mostrarCriptomonedas(resultado))
+            
 }
 
 function mostrarCriptomonedas(resultado) {
@@ -31,6 +32,9 @@ function mostrarCriptomonedas(resultado) {
 
 function validarFormulario(e) {
     e.preventDefault();
+
+    spinner();
+
     const moneda = document.querySelector('#moneda').value;
     const criptomoneda = document.querySelector('#criptomonedas').value;
 
@@ -46,8 +50,6 @@ function mostrarMensaje(mensaje) {
     const existeAlerta = document.querySelector('.error');
 
     if(!existeAlerta) {
-        limpiarHTML();
-        
         const alerta = document.createElement('p');
         alerta.classList.add('error');
         alerta.textContent = mensaje;
@@ -100,6 +102,21 @@ function numerosConPunto(numero) {
 
 function porcentajeVariacion(numero){
     return numero.toFixed(3);
+}
+
+function spinner() {
+    limpiarHTML();
+
+    const spinnerSelect = document.querySelector('.lds-roller');
+
+    if(!spinnerSelect){
+        const spinner = document.createElement('div');
+        spinner.classList.add('lds-roller');
+        spinner.innerHTML = `
+        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+        `;
+        resultado.appendChild(spinner);
+    }
 }
 
 function limpiarHTML() {
