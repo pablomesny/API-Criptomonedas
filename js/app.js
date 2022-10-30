@@ -33,16 +33,16 @@ function mostrarCriptomonedas(resultado) {
 function validarFormulario(e) {
     e.preventDefault();
 
-    spinner();
-
+    
     const moneda = document.querySelector('#moneda').value;
     const criptomoneda = document.querySelector('#criptomonedas').value;
-
+    
     if(moneda === '' || criptomoneda === '') {
         mostrarMensaje('Ambos campos son obligatorios');
         return;
     }
-
+    
+    spinner();
     consultarCotizaciones(moneda, criptomoneda);    
 }
 
